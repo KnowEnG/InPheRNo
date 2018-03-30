@@ -40,7 +40,7 @@ parser.add_argument('-id', '--input_directory', default = '/Users/emad2/Amin_Res
 parser.add_argument('-od', '--output_directory', default = '/Users/emad2/Amin_Research/InPheRNo_github/InPheRNo/Results', help = 'output directory adddress')
 parser.add_argument('-it', '--input_tf', default = 'TF_Ensemble.csv', help = 'Name of the file containing list of TFs in a csv file. The file should not have a header.')
 parser.add_argument('-ie', '--input_expression', default = 'expr_sample.csv', help = 'A file containing gene and TF expression data (gene x samples). The file has a header (sample names).')
-parser.add_argument('-igp', '--input_gene_phenotype', default = 'Pvalue_gene_phenotype_ACC.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype, sorted in an ascending order based on the p-value (smallest p-values appear first). The file has a header.')
+parser.add_argument('-igp', '--input_gene_phenotype', default = 'Pvalue_gene_phenotype_interest.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype, sorted in an ascending order based on the p-value (smallest p-values appear first). Only include genes of interest to reduce computation time. The file has a header.')
 parser.add_argument('-mt', '--max_num_tf', default = 15, help = 'Maximum number of Tfs recovered for each gene using EN')
 parser.add_argument('-lr', '--l1_ratio', default = 0.5, help = 'l1 ratio in EN model' )
 parser.add_argument('-ogp', '--output_gene_phenotype', default = 'Pvalue_gene_phenotype_tmp.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype, sorted in an ascending order based on the p-value (smallest p-values appear first). The file has a header.')
@@ -107,7 +107,7 @@ pvalue_gt_array = (-1) * np.ones((len(only_gene_list), len(only_TF_list))) #A ge
 X_features = expr_TF.values.T
 start_time = time.clock()
 
-for i in range(4): #range(len(only_gene_list)):
+for i in range(len(only_gene_list)):
     print('Pvalue_gene_TF', i)
     y = expr_gene.iloc[i].values
     EN_model = ElasticNetCV(l1_ratio=l1_rat)
@@ -118,7 +118,8 @@ for i in range(4): #range(len(only_gene_list)):
     #print(num_coefs)
     #print(num_coefs[num_coefs <= max_num_coefs][-1])
     rep_EN = 0
-    while (num_coefs[0] != num_coefs[-1]) and (num_coefs[num_coefs <= max_num_coefs][-1] != max_num_coefs) and (rep_EN < 10):
+    #    while (num_coefs[0] != num_coefs[-1]) and (num_coefs[num_coefs <= max_num_coefs][-1] != max_num_coefs) and (rep_EN < 10):
+    while (num_coefs[0] != num_coefs[-1]) and (max(num_coefs[num_coefs <= max_num_coefs]) != max_num_coefs) and (rep_EN < 10):
         rep_EN += 1
         alpha_min = alphas1[(num_coefs <= max_num_coefs)][-1]
         alpha_max = alphas1[(num_coefs > max_num_coefs)][0]
