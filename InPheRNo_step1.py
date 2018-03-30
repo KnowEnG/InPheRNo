@@ -7,16 +7,15 @@ data to generate P-value of gene-TF associations using ElasticNet. The results
 generated for each (TF,gene) pair are pseudo-pvalues that approximately follow
 a Beta distribution under the Null hypothesis. 
 
-output files necessary to use in the next steps. In calculating phenotype-gene
-p-values, we are not using any gene-gene network information. The gene-TF p-values
-are calculated either using Pearson correlation, or using ElasticNet.
 
-As input, this script take in FPKM values in the form of a gene x samples matrix. 
-The outputs are placed in a folder called PGM_data. If tf_gene_method == ElasticNet,
-the matrix of TF-gene p-values assign a value -1 to entries that were not selected
-based on Elastic Net. Note that the gene-pheno p-values are sorted such that smallest 
-p-vals appear first. Also TF-gene matrix is sorted so that gene names match the gene-pheno
-matrix.
+As input, this script takes in 3 files. A list of TFs, a file containing p-values
+of gene-phenotype only for genes of interest, and finally the expression of all
+genes and TFs. The matrix of TF-gene p-values assign a value -1 to entries that
+were not selected based on Elastic Net. 
+
+The script generates two outputs: a gene-phenotype p-value file and a gene-TF
+pseudo p-value file such that the gene names match in the two files.
+
 
 """
 
