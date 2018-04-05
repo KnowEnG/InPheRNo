@@ -52,6 +52,16 @@ parser.add_argument('-tgt', '--output_gene_tf', default = 'Pvalue_gene_tf_tmp.cs
 args = parser.parse_args()
 
 ###############################################################################
+delim_tl = ','
+delim_ex = ','
+delim_gp = ','
+if args.input_tf[-3:] in ['tsv', 'txt']:
+    delim_tl = '\t'
+if args.input_expression[-3:] in ['tsv', 'txt']:
+    delim_ex = '\t'
+if args.input_gene_phenotype_interest[-3:] in ['tsv', 'txt']:
+    delim_gp = '\t'
+
 
 
 address_TF = os.path.join(args.input_directory, args.input_tf)
@@ -73,9 +83,9 @@ eps = 3e-308
 
 
 ##########%%%%%%%%%%@@@@@@@@@@!!!!!!!!!!@@@@@@@@@@%%%%%%%%%%##########
-TF_list = list(pd.read_csv(address_TF, sep=',', header=None, index_col=0).index.values)
-expr_all = pd.read_csv(address_in_expr, index_col=0)    #this is IQN of log2(RPKM+1) values for all cancers (not sorted)
-gene_pheno_pval = pd.read_csv(address_in_gene_pheno, index_col=0)
+TF_list = list(pd.read_csv(address_TF, sep=delim_tl, header=None, index_col=0).index.values)
+expr_all = pd.read_csv(address_in_expr, sep=delim_ex, index_col=0)    #this is IQN of log2(RPKM+1) values for all cancers (not sorted)
+gene_pheno_pval = pd.read_csv(address_in_gene_pheno, sep=delim_gp, index_col=0)
 ##########%%%%%%%%%%@@@@@@@@@@!!!!!!!!!!@@@@@@@@@@%%%%%%%%%%##########
 
 
