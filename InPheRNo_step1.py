@@ -8,9 +8,12 @@ generated for each (TF,gene) pair are pseudo-pvalues that approximately follow
 a Beta distribution under the Null hypothesis. 
 
 
-As input, this script takes in 3 files. A list of TFs, a file containing p-values
+As input, this script takes in 3 files. A list of ALL TFs, a file containing p-values
 of gene-phenotype only for genes of interest, and finally the expression of all
-genes and TFs. The matrix of TF-gene p-values assign a value -1 to entries that
+genes and TFs. If there are shared gene name sbetween list of TFs and gene-phenotype
+pvalue file, the script drops those. 
+
+The matrix of TF-gene p-values assign a value -1 to entries that
 were not selected based on Elastic Net. 
 
 The script generates two outputs: a gene-phenotype p-value file and a gene-TF
@@ -39,10 +42,10 @@ parser.add_argument('-id', '--input_directory', default = '/Users/emad2/Amin_Res
 parser.add_argument('-od', '--output_directory', default = '/Users/emad2/Amin_Research/InPheRNo_github/InPheRNo/Results', help = 'output directory adddress')
 parser.add_argument('-it', '--input_tf', default = 'TF_Ensemble.csv', help = 'Name of the file containing list of TFs in a csv file. The file should not have a header.')
 parser.add_argument('-ie', '--input_expression', default = 'expr_sample.csv', help = 'A file containing gene and TF expression data (gene x samples). The file has a header (sample names).')
-parser.add_argument('-igp', '--input_gene_phenotype', default = 'Pvalue_gene_phenotype_interest.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype, sorted in an ascending order based on the p-value (smallest p-values appear first). Only include genes of interest to reduce computation time. The file has a header.')
+parser.add_argument('-igp', '--input_gene_phenotype_interest', default = 'Pvalue_gene_phenotype_interest.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype only for genes of interest (and not all genes), sorted in an ascending order based on the p-value (smallest p-values appear first). Only include genes of interest to reduce computation time. The file has a header.')
 parser.add_argument('-mt', '--max_num_tf', default = 15, help = 'Maximum number of Tfs recovered for each gene using EN')
 parser.add_argument('-lr', '--l1_ratio', default = 0.5, help = 'l1 ratio in EN model' )
-parser.add_argument('-ogp', '--output_gene_phenotype', default = 'Pvalue_gene_phenotype_tmp.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype, sorted in an ascending order based on the p-value (smallest p-values appear first). The file has a header.')
+parser.add_argument('-ogp', '--output_gene_phenotype', default = 'Pvalue_gene_phenotype_interest_tmp.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype, sorted in an ascending order based on the p-value (smallest p-values appear first). The file has a header.')
 parser.add_argument('-tgt', '--output_gene_tf', default = 'Pvalue_gene_tf_tmp.csv', help = 'A file (gene x tf) containing p-values of gene-tf, sorted in an ascending order based on gene-pheno file. The file has a header.')
 
 args = parser.parse_args()
