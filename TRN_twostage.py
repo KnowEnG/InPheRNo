@@ -177,7 +177,7 @@ if end_index == "None":
 if args.output_file == "None":
     address_outputfile = os.path.join(args.output_dir, 'InPheRNo_tmp_out_repeat%s.csv' %(args.index_repeat))        
 else:
-    address_outputfile = os.path.join(args.output_dir, 'InPheRNo_tmp_out_repeat%s.csv' %(args.index_repeat))        
+    address_outputfile = os.path.join(args.output_dir, args.output_file + 'InPheRNo_tmp_out_repeat%s.csv' %(args.index_repeat))        
 
 if int(args.start_index) == 0:
     T_recovered = np.zeros((n_TF, n_gene))   #A matrix that shows probabilities of each variable being 1 

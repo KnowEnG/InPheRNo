@@ -72,7 +72,7 @@ def parse_args():
     parser.add_argument('-ptm', '--Prior_T_method', default='fixed', help='Method to set prior probability of T=1. If fixed is chosen and args.priot_T is None, we use 1/(10*n_TF).')
     parser.add_argument('-rtg', '--R_TF_gene', default="None", help='mixing parameter. If None is selected, it is learnt from the data.')
     parser.add_argument('-mnt', '--max_num_TF', default=15, help='Max number of TFs which was used as a parameter in InPheRNo_step1.py.')
-    parser.add_argument('-nr', '--num_repeat', default=2, help='Number of the repeats. Repeats are used to ensure stability of results. At least 100 repeats are recommended.')
+    parser.add_argument('-nr', '--num_repeat', default=100, help='Number of the repeats. Repeats are used to ensure stability of results. At least 100 repeats are recommended.')
     parser.add_argument('-sr', '--start_repeat', default=0, help='Start index of the repeat. Useful if program gets killed in the middle or for parallelization.')
     parser.add_argument('-er', '--end_repeat', default='None', help='End index of the repeat. Useful if program gets killed in the middle or for parallelization.')
     parser.add_argument('-ni', '--num_iteration', default=200, help='number of iterations for the PGM.')
