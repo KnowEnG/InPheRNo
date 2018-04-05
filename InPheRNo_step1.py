@@ -70,7 +70,7 @@ if not os.path.exists(address_out_dir):
     os.makedirs(address_out_dir)
 
 address_in_expr = os.path.join(args.input_directory, args.input_expression) 
-address_in_gene_pheno = os.path.join(args.input_directory, args.input_gene_phenotype) 
+address_in_gene_pheno = os.path.join(args.input_directory, args.input_gene_phenotype_interest) 
 
 address_out_pvalue_gp= os.path.join(args.output_directory, args.output_gene_phenotype)
 address_out_pvalue_gt = os.path.join(args.output_directory, args.output_gene_tf)
@@ -108,7 +108,7 @@ only_gene_list.sort()
 #find intersetion of gene_pheno_pval file and genes with expression values
 gene_pheno_pval = gene_pheno_pval.loc[only_gene_list]
 pvalue_gp_df = gene_pheno_pval.sort_values(by=gene_pheno_pval.columns[0])    #sort
-only_gene_list = list(gene_pheno_pval.index.values)
+only_gene_list = list(pvalue_gp_df.index.values)
 
 
 

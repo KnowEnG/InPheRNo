@@ -41,6 +41,7 @@ from scipy.stats import beta, uniform
 import numpy as np
 from scipy.stats import rv_continuous
 import sys
+import warnings
 
 
 
@@ -67,15 +68,15 @@ def parse_args():
     parser.add_argument('-atg0', '--A_TF_gene_h0', default="None", help='alpha in beta distribution of TF-gene under Null hypothesis (TF does not regulate gene). If None, it is learnt from data. Otherwise a number must be given.')
     parser.add_argument('-atg1', '--A_TF_gene_h1', default="None", help='alpha in beta distribution of TF-gene under alternative hypothesis (TF regulates gene). If None, it is learnt from data. Otherwise a number must be given.')
     parser.add_argument('-agp', '--A_gene_pheno', default="None", help='alpha in beta distribution of gene-pheno. If None, it is estimated from data (p-value of gene phenotype for all genes is required). Otherwise a number must be given.')
-    parser.add_argument('-pt', '--Prior_T', default="None", help='Prior probability of T=1')
-    parser.add_argument('-ptm', '--Prior_T_method', default='fixed', help='Method to set prior probability of T=1. Options are fixed and learn. If fixed is chosen and args.priot_T is None, we use 1/(10*n_TF).')
-    parser.add_argument('-rtg', '--R_TF_gene', default="None", help='mixing parameter')
+    parser.add_argument('-pt', '--Prior_T', default="None", help='Prior probability of T=1.')
+    parser.add_argument('-ptm', '--Prior_T_method', default='fixed', help='Method to set prior probability of T=1. If fixed is chosen and args.priot_T is None, we use 1/(10*n_TF).')
+    parser.add_argument('-rtg', '--R_TF_gene', default="None", help='mixing parameter. If None is selected, it is learnt from the data.')
     parser.add_argument('-mnt', '--max_num_TF', default=15, help='Max number of TFs which was used as a parameter in InPheRNo_step1.py.')
-    parser.add_argument('-nr', '--num_repeat', default=100, help='Number of the repeats. Repeats are used to ensure stability of results. At least 100 repeats are recommended.')
+    parser.add_argument('-nr', '--num_repeat', default=2, help='Number of the repeats. Repeats are used to ensure stability of results. At least 100 repeats are recommended.')
     parser.add_argument('-sr', '--start_repeat', default=0, help='Start index of the repeat. Useful if program gets killed in the middle or for parallelization.')
     parser.add_argument('-er', '--end_repeat', default='None', help='End index of the repeat. Useful if program gets killed in the middle or for parallelization.')
-    parser.add_argument('-ni', '--num_iteration', default=200, help='number of iterations for the PGM')
-    parser.add_argument('-nb', '--num_burn', default=100, help='number of iterations to burn')
+    parser.add_argument('-ni', '--num_iteration', default=200, help='number of iterations for the PGM.')
+    parser.add_argument('-nb', '--num_burn', default=100, help='number of iterations to burn.')
     parser.add_argument('-nt', '--num_thin', default=1, help='number of iterations to thin by')
 #    parser.add_argument('-si', '--start_index', default=0, help='start index of the gene to consider')
 #    parser.add_argument('-ei', '--end_index', default='None', help='end index of the gene to consider')
@@ -104,12 +105,12 @@ if args.input_TF_gene[-3:] in ['tsv', 'txt']:
 if not os.path.exists(args.output_dir):
     os.makedirs(args.output_dir)
 
-"""
 
 address_TF_gene = os.path.join(args.input_dir_step_one, args.input_TF_gene)
 pvalue_TF_gene = pd.read_csv(address_TF_gene, sep=delim_gp, index_col=0, header=0).T
 n_TF = len(pvalue_TF_gene.index)
 n_target_gene = len(pvalue_TF_gene.columns)
+
 
 batch_size = int(args.batch_size)
 n_batch = ((n_target_gene - 1) // batch_size) + 1
@@ -140,6 +141,7 @@ if args.input_gene_pheno_all not in  ['None', 'NONE']:
 
 
 if args.A_gene_pheno in ['None', 'NONE']:
+    np.seterr(divide='ignore', invalid='ignore')
     beta_unif_rv = beta_unif_gen(name='beta_unif', a=0., b=1.)
     a_gp_tmp, _, c, _, _= beta_unif_rv.fit(pvalue_gene_pheno_all, fb0=1, floc=0, fscale=1) #fb0 or fc0 fixes b0 and c0, respectively
     if c > 1:
@@ -167,14 +169,13 @@ for i_r in range(int(args.start_repeat), end_repeat):
 
         print('a_gp = ', A_gene)
         
-        command2run =  "python Main_TRN_twostage_v3_step3.py -atg0 %s -atg1 %s -agp %s -pt %s -ptm %s \
-        -rtg %s -id %s -igp %s -itg %s -od %s -of %s -mnt %s -ir %s -ni %s -nb %s -nt %s -si %s -ei %s" \
+        command2run =  "python TRN_twostage.py -atg0 %s -atg1 %s -agp %s -pt %s -ptm %s \
+        -rtg %s -igp %s -itg %s -od %s -of %s -mnt %s -ir %s -ni %s -nb %s -nt %s -si %s -ei %s" \
         %(args.A_TF_gene_h0, args.A_TF_gene_h1, A_gene, args.Prior_T, args.Prior_T_method, \
-        args.R_TF_gene, args.input_dir, args.input_gene_pheno, args.input_TF_gene, args.output_dir, \
+        args.R_TF_gene, os.path.join(args.input_dir_step_one, args.input_gene_pheno), os.path.join(args.input_dir_step_one, args.input_TF_gene), args.output_dir, \
         args.output_file, args.max_num_TF, i_r, args.num_iteration, args.num_burn, args.num_thin, start_ind, end_ind)
 
         print(command2run)
     
         os.system(command2run)
 
-"""
