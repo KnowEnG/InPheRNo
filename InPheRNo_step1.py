@@ -39,8 +39,8 @@ import argparse
 # Parse command line options/arguments
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-id', '--input_directory', default = '/Users/emad2/Amin_Research/InPheRNo_github/InPheRNo/Data/', help = 'Address of directory containing input files')
-parser.add_argument('-od', '--output_directory', default = '/Users/emad2/Amin_Research/InPheRNo_github/InPheRNo/Results', help = 'output directory adddress')
+parser.add_argument('-id', '--input_directory', default = './Data', help = 'Address of directory containing input files')
+parser.add_argument('-od', '--output_directory', default = './Results', help = 'output directory adddress')
 parser.add_argument('-it', '--input_tf', default = 'TF_Ensemble.csv', help = 'Name of the file containing list of TFs in a csv file. The file should not have a header.')
 parser.add_argument('-ie', '--input_expression', default = 'expr_sample.csv', help = 'A file containing gene and TF expression data (gene x samples). The file has a header (sample names).')
 parser.add_argument('-igp', '--input_gene_phenotype_interest', default = 'Pvalue_gene_phenotype_interest.csv', help = 'A file (gene x pvalue) containing p-values of gene-phenotype only for genes of interest (and not all genes), sorted in an ascending order based on the p-value (smallest p-values appear first). Only include genes of interest to reduce computation time. The file has a header.')
@@ -66,6 +66,9 @@ if args.input_gene_phenotype_interest[-3:] in ['tsv', 'txt']:
 
 address_TF = os.path.join(args.input_directory, args.input_tf)
 address_out_dir = args.output_directory
+if not os.path.exists(address_out_dir):
+    os.makedirs(address_out_dir)
+
 address_in_expr = os.path.join(args.input_directory, args.input_expression) 
 address_in_gene_pheno = os.path.join(args.input_directory, args.input_gene_phenotype) 
 
