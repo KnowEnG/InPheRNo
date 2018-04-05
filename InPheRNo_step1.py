@@ -8,16 +8,17 @@ generated for each (TF,gene) pair are pseudo-pvalues that approximately follow
 a Beta distribution under the Null hypothesis. 
 
 
-As input, this script takes in 3 files. A list of ALL TFs, a file containing p-values
-of gene-phenotype only for genes of interest, and finally the expression of all
-genes and TFs. If there are shared gene name sbetween list of TFs and gene-phenotype
-pvalue file, the script drops those. 
+As input, this script takes in 3 files: 1) A list of ALL TFs, 2) a file containing
+p-values of gene-phenotype associations only for genes of interest, and 3) the 
+expression profiles of genes and TFs. If there are shared gene name sbetween list
+of TFs and gene-phenotype pvalue file, the script drops those. 
 
-The matrix of TF-gene p-values assign a value -1 to entries that
-were not selected based on Elastic Net. 
 
 The script generates two outputs: a gene-phenotype p-value file and a gene-TF
-pseudo p-value file such that the gene names match in the two files.
+pseudo p-value file such that the gene names match in the two files. These files
+only include genes of interest and not all genes. The matrix of TF-gene p-values
+contains values of -1 for entries which were assigned a coefficient of 0 in 
+ElasticNet.
 
 
 """
