@@ -27,6 +27,7 @@ Instead of installing all these libraries independently, you can use prebulit Py
 conda install scipy=0.19.1
 
 For pymc, you can use
+
 conda install -c https://conda.binstar.org/pymc pymc=2.3.6
 
 # Input files
