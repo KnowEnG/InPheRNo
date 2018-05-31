@@ -11,7 +11,7 @@ Here we present InPheRNo, a novel computational tool to reconstruct ‘phenotype
 
 The figure below depcits the method overview. 
 
-![Method Overview](/images/Pipeline_ProGENI.png)
+![Method Overview](/Images/Figure1_Pipeline_final.png)
 
 # Requirements
 
