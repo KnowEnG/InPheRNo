@@ -24,10 +24,6 @@ In order to run the code, you need to have Python 3.5 installed. In addition, th
 
 Instead of installing all these libraries independently, you can use prebulit Python distributions such as [Anaconda](https://www.continuum.io/downloads), which provides a free academic subscription. If you are using Anaconda, you can easily install any specific version of the modules above using a command like:
 
-conda install scipy=0.19.1
-
-For pymc, you can use
-
 conda install pymc=2.3.6
 
 # Input files
