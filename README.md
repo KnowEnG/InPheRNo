@@ -16,11 +16,11 @@ The figure below depcits the method overview.
 # Requirements
 
 In order to run the code, you need to have Python 3.5 installed. In addition, the code uses the following python modules/libraries which need to be installed (the number in brackets show the version):
-- [Numpy](http://www.numpy.org/)()
-- [Scipy](https://www.scipy.org/)
-- [Pandas](http://pandas.pydata.org/)
-- [Sklearn (scikit-learn)](http://scikit-learn.org/stable/)
-- [PyMC](https://pymc-devs.github.io/pymc/)(version 2.3.6)
+- [Numpy](http://www.numpy.org/) (version 1.13.0)
+- [Scipy](https://www.scipy.org/) (verison 0.19.1)
+- [Pandas](http://pandas.pydata.org/) (version 0.20.2)
+- [Sklearn (scikit-learn)](http://scikit-learn.org/stable/) (version 0.18.1)
+- [PyMC](https://pymc-devs.github.io/pymc/) (version 2.3.6)
 
 Instead of installing all these libraries independently, you can use prebulit Python distributions such as [Anaconda](https://www.continuum.io/downloads), which provides a free academic subscription.
 
