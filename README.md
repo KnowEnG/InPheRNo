@@ -9,7 +9,7 @@ Reconstruction of transcriptional regulatory networks (TRNs) is a powerful appro
 Here we present InPheRNo, a novel computational tool to reconstruct ‘phenotype-relevant’ transcriptional regulatory networks. This method is based on a probabilistic graphical model whose conditional probability distributions model the simultaneous effects of multiple transcription factors (TFs) on their target genes as well as the statistical relationship between target gene expression and phenotype. 
 
 
-The figure below depcits the method overview in the context of drug response. (a) shows an overview of the ProGENI method, while (b) shows how bootstrap sampling can be used in order to obtain robust ranking. 
+The figure below depcits the method overview. 
 
 ![Method Overview](/images/Pipeline_ProGENI.png)
 
