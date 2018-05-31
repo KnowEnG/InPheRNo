@@ -28,7 +28,7 @@ conda install scipy=0.19.1
 
 For pymc, you can use
 
-conda install -c https://conda.binstar.org/pymc pymc=2.3.6
+conda install pymc=2.3.6
 
 # Input files
 
