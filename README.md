@@ -15,8 +15,8 @@ The figure below depcits the method overview.
 
 # Requirements
 
-In order to run the code, you need to have Python 3.5 installed. In addition, the code uses the following python modules/libraries which need to be installed:
-- [Numpy](http://www.numpy.org/)
+In order to run the code, you need to have Python 3.5 installed. In addition, the code uses the following python modules/libraries which need to be installed (the number in brackets show the version):
+- [Numpy](http://www.numpy.org/)()
 - [Scipy](https://www.scipy.org/)
 - [Pandas](http://pandas.pydata.org/)
 - [Sklearn (scikit-learn)](http://scikit-learn.org/stable/)
