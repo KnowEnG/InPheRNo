@@ -45,7 +45,6 @@ Example:
 | gene2 | 5E-14 |
 | gene3 | 3E-10 |
 
-
 #### Input3: A file containing gene and TF expression data:
 This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input2 and TFs provided in Input1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input.  
 
@@ -59,6 +58,14 @@ Example:
 | gene2 | 0.9 | -2.3 | -0.3 |
 | gene3 | 0.4 | 0.8 | 1.5 |
  
+### Description of outputs:
+The first step of InPheRNo generates two output files that by default will be located in a directory called "Results" placed in the current directory. These intermediate outupts will be used in the next step of InPheRNo. 
+
+#### Output1: Pvalue_gene_phenotype_interest_tmp.csv
+If default parameters are used to run the first step, Output1 will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input2, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
+
+#### Output2: Pvalue_gene_tf_tmp.csv
+If default parameters are used to run the first step, Output2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF)  csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1 file. The file has a header. See folder "Results" for a sample.
 
 ### Running ProGENI_step1.py: 
 #### With default settings
@@ -68,12 +75,12 @@ To Run this step with default parameters, place all the three input files above 
 - input_gene_phenotype_interest: name of Input2 containing p-value of gene-phenotype (e.g. "Pvalue_gene_phenotype_interest.csv")
 - input_expression: name of the csv file containing the network edges (e.g. "expr_sample.csv")
 
-The following line shows how to run InPheRNo:
+The following line shows how to run InPheRNo using the sample files:
 ```
 python3 InPheRNo_step1.py --input_directory ./Data --input_tf TF_Ensemble.csv --input_gene_phenotype_interest Pvalue_gene_phenotype_interest.csv --input_expression expr_sample.csv
 ```
 
-By default, ProGENI assumes that all these files are located in the current directory. Given these arguments, one can run ProGENI with default settings. The results will be saved in a file called "results.csv" in the current directory, which contains the ranked list of genes for each response. Only genes shared between the network and gene expression data will be included in the results. 
+By default, InPheRNo writes the intermediate outputs generated in this step into a directory called "Results" in the current directory. To change the location of the intermediate results, see advanced settings. 
 
 #### With advanced settings
 In addition to the positional arguemtns, one can use the following optional arguments to change the default settings.
