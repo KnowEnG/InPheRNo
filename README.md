@@ -31,11 +31,11 @@ Running InPheRNo involves running three manuscripts in a row. Since the intermed
 
 ## STEP 1:
 ### Description of required inputs:
-#### 1) A file containing the list of transcription factors (TFs):
+#### Input1: A file containing the list of transcription factors (TFs):
 This is a csv file in which rows contain the names of the regulators (e.g. TFs). The file should not have a header. As an example see the file "Data/TF_Ensemble.csv". 
 
-#### 2) A file containing p-values of gene-phenotype associations only for genes of interest:
-This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_interest.csv" as an example). The rows correspond to target genes of interest (this may be only a subset of all genes, or it may be all the genes). The value assigned to each gene represents the p-value of association between the expression of that gene and the variation in the phenotype across different samples obtained using a proper statistical test (e.g. a ttest for binary phenotype or Pearson's correlation for continuous, etc.). The genes should be sorted in an ascending order based on the p-value (smallest p-values appear first). The file is assumed to have a header. 
+#### Input2: A file containing p-values of gene-phenotype associations only for genes of interest:
+This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_interest.csv" as an example). The rows correspond to target genes of interest (this may be only a subset of all genes, or it may be all the genes). The p-value for TF-phenotype should not be included in this file. The value assigned to each gene represents the p-value of association between the expression of that gene and the variation in the phenotype across different samples obtained using a proper statistical test (e.g. a ttest for binary phenotype or Pearson's correlation for continuous, etc.). The genes should be sorted in an ascending order based on the p-value (smallest p-values appear first). The file is assumed to have a header. 
 
 Example:
 
@@ -46,18 +46,18 @@ Example:
 | gene3 | 3E-10 |
 
 
-#### Network edge file:
-This is a csv file which contains information on gene-gene interactions. The first should be the header of the file. The network should be represented as a three-column format where each edge in the network is represented as a row in the file: the first two columns contain name of genes and the third column shows the (positive) weight (e.g. representing confidence) corresponding to this relationship. If the set of genes in the network is slightly different from the set of genes in the gene expression data, ProGENI will focus on the intersection of the genes.  
+#### Input3: A file containing gene and TF expression data.'):
+This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input2 and TFs provided in Input1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input.  
 
-Example network edge file:
+Example:
 
-| node_1 | node_2 | weight |
+| sample1 | sample2 | sample3 |
 | :--- | :--- | :--- |
-| G1 | G4 | 777 |
-| G1 | G6 | 232 |
-| G2 | G4 | 999 |
-| G2 | G7 | 131 |
-| G4 | G5 | 444 |
+| TF1 | 0.1 | 0.9 |
+| TF2 | -0.3 | 0.5 |
+| gene1 | -1.1 | 0.6 |
+| gene2 | 0.9 | -2.3 |
+| gene3 | 0.4 | 0.8 |
  
 
 # Running ProGENI
