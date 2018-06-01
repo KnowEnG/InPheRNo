@@ -27,12 +27,9 @@ Instead of installing all these libraries independently, you can use prebulit Py
 conda install pymc=2.3.6
 
 # Running InPheRNo
-Running InPheRNo involved running three manuscripts in a row. Since the intermediate results used in the following steps, one needs to wait for the preceeding step to finish before running the next step.  
+Running InPheRNo involves running three manuscripts in a row. Since the intermediate results are used in the following steps, one needs to wait for the preceeding step to finish before running the next step. 
 
 ## STEP 1:
-
-### Input files
-
 ### Description of required inputs:
 #### Gene expression (features) file:
 This is a genes x samples csv file where the first column contains name of genes and the first row contains name/IDs of the samples. ProGENI assumes that the expression of each gene (across all samples) follows a normal distribution. As a result, we recommend you perform proper transformation on your expression data (e.g. log2 transform on microarray data) to satsify this condition for best results. NAs are not allowed in this file. 
