@@ -83,25 +83,12 @@ python3 InPheRNo_step1.py --input_directory ./Data --input_tf TF_Ensemble.csv --
 By default, InPheRNo writes the intermediate outputs generated in this step into a directory called "Results" in the current directory. To change the location of the intermediate results, see advanced settings. 
 
 #### With advanced settings
-In addition to the positional arguemtns, one can use the following optional arguments to change the default settings.
-- -o, --output (string, default='results.csv'): name of the file containg the results
-- -do, --directory_out (string, default='./'): directory for the results
-- -de, --directory_expression (string, default='./'): directory containing the gene expression file
-- -dr, --directory_response (string, default='./'): directory containing the response file
-- -dn --directory_network (string, default='./'): directory containing the network file
-- -s, --seed (integer, default=1011): the seed for the pseudo random generator used in bootstrap sampling
-- -nr, --num_RCG (integer, default=100): number of genes in the response-correlated gene (RCG) set
-- -pt, --prob_restart_trans (float, default=0.5): restart probability of RWR to network-transform gene expression
-- -pr, --prob_restart_rank (float, default=0.5): restart probability for RWR used to rank nodes w.r.t. RCG
-- -t, --tolerance (float, default=1e-8): residual tolerance used to determine convergence of RWR
-- -mi, --max_iteration (integer, default=100): maximum number of iterations used in RWR
-- -nb, --num_bootstrap (integer, default=1): number of bootstrap samplings
-- -pb, --percent_bootstrap (integer, default=100): percent of samples for bootstrap sampling (between 0-100)
-
-For example, to run Robust-ProGENI with 80% bootstrap sampling and 50 times repeat and save the results in a file called "results_80_50.csv" one can use the following line:
-```
-python3 ProGENI.py gene_expr.csv phenotype.csv network.csv -o results_80_50.csv -nb 50 -pb 80
-```
+In addition to the arguments above, one can use the following optional arguments to change the default settings.
+- -od, --output_directory (string, default='./Results'): Address of the output directory
+- -mt, --max_num_tf (integer, default = 15): Maximum number of TFs recovered for each gene using Elastic Net
+- -lr, --l1_ratio, (float, default = 0.5): l1 ratio of the Elastic Net model
+- -ogp, --output_gene_phenotype (string, default = 'Pvalue_gene_phenotype_interest_tmp.csv'): Name of Output1 file
+- -tgt, --output_gene_tf (string, default = 'Pvalue_gene_tf_tmp.csv'): Name of Output2 file
 
 ### Sample inputs and outputs:
 To test whether ProGENI runs as expected on your machine, you can use the sample inputs in the folder "sample_data" and run ProGENI with num_RCG=2 and other arguments set with default values. The results should match the file "results_sample.csv".
