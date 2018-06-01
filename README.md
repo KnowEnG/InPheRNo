@@ -15,7 +15,7 @@ The figure below depcits the method overview.
 
 # Requirements
 
-In order to run the code, you need to have Python 3.5 installed. In addition, the code uses the following python modules/libraries which need to be installed (the number in brackets show the version):
+In order to run the code, you need to have Python 3.5 installed. In addition, the code uses the following python modules/libraries which need to be installed (the number in brackets show the version of the module used to generate the results in the manuscript):
 - [Numpy](http://www.numpy.org/) (version 1.13.0)
 - [Scipy](https://www.scipy.org/) (verison 0.19.1)
 - [Pandas](http://pandas.pydata.org/) (version 0.20.2)
@@ -26,7 +26,12 @@ Instead of installing all these libraries independently, you can use prebulit Py
 
 conda install pymc=2.3.6
 
-# Input files
+# Running InPheRNo
+Running InPheRNo involved running three manuscripts in a row. Since the intermediate results used in the following steps, one needs to wait for the preceeding step to finish before running the next step.  
+
+## STEP 1:
+
+### Input files
 
 ### Description of required inputs:
 #### Gene expression (features) file:
