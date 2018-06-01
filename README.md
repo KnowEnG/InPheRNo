@@ -31,22 +31,10 @@ Running InPheRNo involves running three manuscripts in a row. Since the intermed
 
 ## STEP 1:
 ### Description of required inputs:
-#### Gene expression (features) file:
-This is a genes x samples csv file where the first column contains name of genes and the first row contains name/IDs of the samples. ProGENI assumes that the expression of each gene (across all samples) follows a normal distribution. As a result, we recommend you perform proper transformation on your expression data (e.g. log2 transform on microarray data) to satsify this condition for best results. NAs are not allowed in this file. 
+#### 1) A file containing the list of transcription factors (TFs):
+This is a csv file in which rows contain the names of the regulators (e.g. TFs). The file should not have a header. As an example see the file "Data/TF_Ensemble.csv". 
 
-Example Gene expression file:
-
-|  | sample_1 | sample_2 | sample_3 |
-| :--- | :--- | :--- | :--- |
-| G1 | 0.24 | 0.67 | 2.12 |  
-| G2 | 0.34 | -1.34 | 0.45 |
-| G3 | 1.51 | 0.05 | -0.22 |
-| G4 | 0.03 | 0.55 | 1.15 |
-| G5 | -0.23 | 0.23 | 0.55 |
-| G6 | 0.94 | 0.33 | 1.12 |
-
-
-#### Phenotype (response) file:
+#### 2) A file containing p-values of gene-phenotype associations only for genes of interest:
 This is a phenotype x samples csv file where the first column contains name of different phenotypes (e.g. different drugs) and the first row contains name/IDs of the samples. Make sure that the samples are ordered the same as the gene expression file (i.e. the first row of both files hould be identical). NAs are allowed in this file. 
 
 Example phenotype file:
