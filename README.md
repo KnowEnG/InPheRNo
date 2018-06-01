@@ -35,15 +35,15 @@ Running InPheRNo involves running three manuscripts in a row. Since the intermed
 This is a csv file in which rows contain the names of the regulators (e.g. TFs). The file should not have a header. As an example see the file "Data/TF_Ensemble.csv". 
 
 #### 2) A file containing p-values of gene-phenotype associations only for genes of interest:
-This is a phenotype x samples csv file where the first column contains name of different phenotypes (e.g. different drugs) and the first row contains name/IDs of the samples. Make sure that the samples are ordered the same as the gene expression file (i.e. the first row of both files hould be identical). NAs are allowed in this file. 
+This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_interest.csv" as an example). The rows correspond to target genes of interest (this may be only a subset of all genes, or it may be all the genes). The value assigned to each gene represents the p-value of association between the expression of that gene and the variation in the phenotype across different samples obtained using a proper statistical test (e.g. a ttest for binary phenotype or Pearson's correlation for continuous, etc.). The genes should be sorted in an ascending order based on the p-value (smallest p-values appear first). The file is assumed to have a header. 
 
-Example phenotype file:
+Example:
 
-|  | sample_1 | sample_2 | sample_3 |
+|  | Pvalue |
 | :--- | :--- | :--- | :--- |
-| drug_1 | 0.65 | 0.12 | 1.45 |  
-| drug_2 | 1.67 | NA | 2.45 |
-| drug_3 | 2.51 | 0.56 | 0.34 |
+| gene1 | 1E-22 |  
+| gene2 | 5E-14 |
+| gene3 | 3E-10 |
 
 
 #### Network edge file:
