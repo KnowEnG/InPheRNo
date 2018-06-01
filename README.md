@@ -40,7 +40,7 @@ This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_interest.
 Example:
 
 |  | Pvalue |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- |
 | gene1 | 1E-22 |  
 | gene2 | 5E-14 |
 | gene3 | 3E-10 |
