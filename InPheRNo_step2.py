@@ -1,19 +1,4 @@
 """
-This code is written so that we can run Main_TRN_model5p3.py for a number of genes
-in a range of indices. The suggestion is to order genes so that top n genes are the 
-ones we want to analyze (e.g. sort based on p_gp). 
-This is necessary due to the memory leakage of pymc. In other words, defining pymc
-models in a loop causes increase of memory useage to the point of using all resources.
-Example:
-$python Main_TRN_runner_twostage.py -id /workspace/TRN/Data/PGM_TCGA_GTEX -igpa Pvalue_gene_phenotype_1vsAll_FPKM_AdrenalGland_ACC.csv -igp Pvalue_gene_phenotype_ElasticNet_1vsAll_FPKM_TCGA_all_1_100_AdrenalGland_ACC_top_1500.csv -itg  Pvalue_TF_gene_ElasticNet_1vsAll_FPKM_TCGA_all_1_100_AdrenalGland_ACC_top_1500.csv -od /workspace/TRN/Pickles/Pickles_PGM_TCGA_GTEX/Twostage/ 
-make sure the file names include either RPKM_GTEX or FPKM_TCGA
-
-The purpose of this wrapper is 1) to allow simple parallelization: different repeats
-can be run on different machines and 2) avoid memory leakage (due to some issues
-with pymc module at the time this code was written). 
-For parallelization, one can use -sr and -er arguments to determine the number of
-repeats (out of ---num_repeat) that needs to be considered in this run of the script.
-
 As input, this scripts takes in 3 files: 
 1) the file containing p-values of gene-phenotype associations for ALL the genes
 (and not just genes of interest). If "None", it is assumed that the genes of interest
