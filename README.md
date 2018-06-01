@@ -62,14 +62,18 @@ Example:
 
 ### Running ProGENI_step1.py: 
 #### With default settings
-There are only 3 required (positional) arguments that needs to be specified by the user:
-- input_expression: name of the csv file containing the gene expression data
-- input_response: name of the csv file containing the phenotype data
-- input_network: name of the csv file containing the network edges
-By default, ProGENI assumes that all these files are located in the current directory. Given these arguments, one can run ProGENI with default settings. The results will be saved in a file called "results.csv" in the current directory, which contains the ranked list of genes for each response. Only genes shared between the network and gene expression data will be included in the results. The following line shows how to run ProGENI:
+To Run this step with default parameters, place all the three input files above in one folder. Then specify the following four arguments:
+- input_directory: address of the data directory containing the three input files (e.g. "./Data")
+- input_tf: name of Input1 file containing the name of regulators (e.g. "TF_Ensemble.csv")
+- input_gene_phenotype_interest: name of Input2 containing p-value of gene-phenotype (e.g. "Pvalue_gene_phenotype_interest.csv")
+- input_expression: name of the csv file containing the network edges (e.g. "expr_sample.csv")
+
+The following line shows how to run InPheRNo:
 ```
-python3 ProGENI.py gene_expr.csv phenotype.csv network.csv
+python3 InPheRNo_step1.py --input_directory ./Data --input_tf TF_Ensemble.csv --input_gene_phenotype_interest Pvalue_gene_phenotype_interest.csv --input_expression expr_sample.csv
 ```
+
+By default, ProGENI assumes that all these files are located in the current directory. Given these arguments, one can run ProGENI with default settings. The results will be saved in a file called "results.csv" in the current directory, which contains the ranked list of genes for each response. Only genes shared between the network and gene expression data will be included in the results. 
 
 #### With advanced settings
 In addition to the positional arguemtns, one can use the following optional arguments to change the default settings.
