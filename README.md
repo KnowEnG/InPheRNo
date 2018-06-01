@@ -31,10 +31,10 @@ Running InPheRNo involves running three manuscripts (InPheRNo_step1.py, InPheRNo
 
 ## STEP 1:
 ### Description of required inputs:
-#### Input1: A file containing the list of transcription factors (TFs):
+#### Input_1.1: A file containing the list of transcription factors (TFs):
 This is a csv file in which rows contain the names of the regulators (e.g. TFs). The file should not have a header. As an example see the file "Data/TF_Ensemble.csv". 
 
-#### Input2: A file containing p-values of gene-phenotype associations only for genes of interest:
+#### Input1.2: A file containing p-values of gene-phenotype associations only for genes of interest:
 This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_interest.csv" as an example). The rows correspond to target genes of interest (this may be only a subset of all genes, or it may be all the genes). The p-value for TF-phenotype should not be included in this file. The value assigned to each gene represents the p-value of association between the expression of that gene and the variation in the phenotype across different samples obtained using a proper statistical test (e.g. a ttest for binary phenotype or Pearson's correlation for continuous, etc.). The genes should be sorted in an ascending order based on the p-value (smallest p-values appear first). The file is assumed to have a header. 
 
 Example:
@@ -45,8 +45,8 @@ Example:
 | gene2 | 5E-14 |
 | gene3 | 3E-10 |
 
-#### Input3: A file containing gene and TF expression data:
-This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input2 and TFs provided in Input1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input.  
+#### Input1.3: A file containing gene and TF expression data:
+This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input2.1 and TFs provided in Input1.1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input.  
 
 Example:
 
@@ -62,7 +62,7 @@ Example:
 The first step of InPheRNo generates two output files that by default will be located in a directory called "Results" placed in the current directory. These intermediate outupts will be used in the next step of InPheRNo. 
 
 #### Output1: Pvalue_gene_phenotype_interest_tmp.csv
-If default parameters are used to run the first step, Output1 will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input2, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
+If default parameters are used to run the first step, Output1 will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input2.1, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
 
 #### Output2: Pvalue_gene_tf_tmp.csv
 If default parameters are used to run the first step, Output2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF)  csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1 file. The file has a header. See folder "Results" for a sample.
@@ -71,8 +71,8 @@ If default parameters are used to run the first step, Output2 will be a file cal
 #### With default settings
 To Run this step with default parameters, place all the three input files above in one folder. Then specify the following four arguments:
 - input_directory: address of the data directory containing the three input files (e.g. "./Data")
-- input_tf: name of Input1 file containing the name of regulators (e.g. "TF_Ensemble.csv")
-- input_gene_phenotype_interest: name of Input2 containing p-value of gene-phenotype (e.g. "Pvalue_gene_phenotype_interest.csv")
+- input_tf: name of Input1.1 file containing the name of regulators (e.g. "TF_Ensemble.csv")
+- input_gene_phenotype_interest: name of Input2.1 containing p-value of gene-phenotype (e.g. "Pvalue_gene_phenotype_interest.csv")
 - input_expression: name of the csv file containing the network edges (e.g. "expr_sample.csv")
 
 The following line shows how to run InPheRNo using the sample files:
@@ -89,6 +89,25 @@ In addition to the arguments above, one can use the following optional arguments
 - -lr, --l1_ratio, (float, default = 0.5): l1 ratio of the Elastic Net model
 - -ogp, --output_gene_phenotype (string, default = 'Pvalue_gene_phenotype_interest_tmp.csv'): Name of Output1 file
 - -tgt, --output_gene_tf (string, default = 'Pvalue_gene_tf_tmp.csv'): Name of Output2 file
+
+
+## STEP 2:
+### Description of the required inputs:
+This step requires three input files. Two of these input files are the intermediate outputs generated in STEP1. 
+#### Input1: A file containing the list of transcription factors (TFs):
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Sample inputs and outputs:
 To test whether ProGENI runs as expected on your machine, you can use the sample inputs in the folder "sample_data" and run ProGENI with num_RCG=2 and other arguments set with default values. The results should match the file "results_sample.csv".
