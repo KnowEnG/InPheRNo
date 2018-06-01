@@ -51,13 +51,13 @@ This is a (gene x samples) csv file containing the normalized gene (and TF) expr
 
 Example:
 
-| sample1 | sample2 | sample3 |
-| :--- | :--- | :--- |
-| TF1 | 0.1 | 0.9 |
-| TF2 | -0.3 | 0.5 |
-| gene1 | -1.1 | 0.6 |
-| gene2 | 0.9 | -2.3 |
-| gene3 | 0.4 | 0.8 |
+|  | sample1 | sample2 | sample3 |
+| :--- | :--- | :--- | :--- |
+| TF1 | 0.1 | 0.9 | 0.5 |
+| TF2 | -0.3 | 0.5 | -0.6 |
+| gene1 | -1.1 | 0.6 | 1.4 |
+| gene2 | 0.9 | -2.3 | -0.3 |
+| gene3 | 0.4 | 0.8 | 1.5 |
  
 
 # Running ProGENI
