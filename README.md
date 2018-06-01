@@ -27,7 +27,7 @@ Instead of installing all these libraries independently, you can use prebulit Py
 conda install pymc=2.3.6
 
 # Running InPheRNo
-Running InPheRNo involves running three manuscripts in a row. Since the intermediate results are used in the following steps, one needs to wait for the preceeding step to finish before running the next step. 
+Running InPheRNo involves running three manuscripts (InPheRNo_step1.py, InPheRNo_step2.py and InPheRNo_step3.py) in a row. Since the intermediate results are used in the following steps, one needs to wait for the preceeding step to finish before running the next step. 
 
 ## STEP 1:
 ### Description of required inputs:
@@ -46,7 +46,7 @@ Example:
 | gene3 | 3E-10 |
 
 
-#### Input3: A file containing gene and TF expression data.'):
+#### Input3: A file containing gene and TF expression data:
 This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input2 and TFs provided in Input1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input.  
 
 Example:
@@ -60,8 +60,8 @@ Example:
 | gene3 | 0.4 | 0.8 | 1.5 |
  
 
-# Running ProGENI
-### With default settings
+### Running ProGENI_step1.py: 
+#### With default settings
 There are only 3 required (positional) arguments that needs to be specified by the user:
 - input_expression: name of the csv file containing the gene expression data
 - input_response: name of the csv file containing the phenotype data
@@ -71,7 +71,7 @@ By default, ProGENI assumes that all these files are located in the current dire
 python3 ProGENI.py gene_expr.csv phenotype.csv network.csv
 ```
 
-### With advanced settings
+#### With advanced settings
 In addition to the positional arguemtns, one can use the following optional arguments to change the default settings.
 - -o, --output (string, default='results.csv'): name of the file containg the results
 - -do, --directory_out (string, default='./'): directory for the results
