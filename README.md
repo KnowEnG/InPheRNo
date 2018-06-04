@@ -165,16 +165,7 @@ If you have used advanced settings in previous steps or if you want to change th
 
 
 
-
-
-
-
-
 ## Sample inputs and outputs:
-To test whether ProGENI runs as expected on your machine, you can use the sample inputs in the folder "sample_data" and run ProGENI with num_RCG=2 and other arguments set with default values. The results should match the file "results_sample.csv".
-```
-python3 ProGENI.py gene_expr_sample.csv response_sample.csv network_sample.csv -nr 2
-```
-# Running InPheRNo_simplified
-ProGENI_simplified.py provides a simplified implementation of ProGENI. In this variation, the Pearson correlation coefficient of network transformed gene expressions and phenotype is used to rank the genes. In other words, the steps involving identification of a RCG set and ranking genes in the network with respect to the RCG are removed. This method is called "ProGENI-PCC" in the manuscript. 
-Usage of this variation is very similar to ProGENI.py, except that -nr and -pr do not need to be provided. 
+A set of sample inputs and sample outputs are provided in this repository in the directories "Data", "Results" and "tmp". The results are obtained by running InPheRNo using default parameters.
+
+
