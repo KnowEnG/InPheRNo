@@ -73,7 +73,7 @@ To Run this step with default parameters, place all the three input files above 
 - input_directory: address of the data directory containing the three input files (e.g. "./Data")
 - input_tf: name of Input1.1 file containing the name of regulators (e.g. "TF_Ensemble.csv")
 - input_gene_phenotype_interest: name of Input1.2 containing p-value of gene-phenotype (e.g. "Pvalue_gene_phenotype_interest.csv")
-- input_expression: name of the csv file containing the network edges (e.g. "expr_sample.csv")
+- input_expression: name of Input1.3 containing the expression of genes and TFs (e.g. "expr_sample.csv")
 
 The following line shows how to run InPheRNo using the sample files:
 ```
@@ -98,7 +98,11 @@ This step requires three input files. Two of these input files are the intermedi
 #### Input2.1: A file containing p-values of gene-phenotype associations for all the genes:
 This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_all.csv" as an example) and is very similar to Input 1.2. The main difference is that this file needs to contain the gene-phenotype association p-values for all the genes and not just the genes of interest. This file is used to estimate the parameters of the PGM. The rows correspond to target genes of interest (this may be only a subset of all genes, or it may be all the genes). The p-value for TF-phenotype should not be included in this file. The value assigned to each gene represents the p-value of association between the expression of that gene and the variation in the phenotype across different samples obtained using a proper statistical test (e.g. a ttest for binary phenotype or Pearson's correlation for continuous, etc.). The genes should be sorted in an ascending order based on the p-value (smallest p-values appear first). The file is assumed to have a header. 
 
+#### Input2.2: The intermediate Output1.1
+This is the Output1.1 file generated in STEP1. If default parameters are used to run the first step, this will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input1.2, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
 
+#### Input2.3: The intermediate Output1.2
+This is the Output1.2 file generated in STEP1. If default parameters are used to run the first step, Output1.2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF) csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1.1 file. The file has a header. See folder "Results" for a sample.
 
 
 
