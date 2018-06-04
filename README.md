@@ -137,12 +137,40 @@ In addition to the arguments above, one can use the following optional arguments
 
 
 
+## STEP 3:
+### Description of the required inputs:
+This step only uses the intermediate outputs generated in STEP2.
+
+### Description of outputs:
+The third step of InPheRNo generates a single output containing the phenotype-relevant TRN and the confidence score for each edge. This file by default will be located in the directory called "Results" placed in the current directory.
+
+#### Output3.1: The phenotype-relevant TRN and the confidence scores
+This is the main final result. This is a (gene x TF) matrix containing the confidence score for each phenotype-relevant edge. The confidence scores should be thresholded (e.g. only values larger than 0.5 kept) to obtain a network.
+
+
+### Running InPheRNo_step3.py: 
+#### With default settings
+If you have already used the default parameters in STEP1 and STEP2, you can easily run the third step:
+
+```
+python3 InPheRNo_step3.py
+```
+
+#### With advanced settings
+If you have used advanced settings in previous steps or if you want to change the default values, you can use the following optional arguments.
+- -id, --input_dir (string, default='./tmp'): Address of directory for the intermediate results of STEP2
+- -nr, --num_repeat (integer, default=100): Number of times a PGM is trained with random initialization in STEP2. This number should be identical to the number used in STEP2.
+- -od, --output_dir (string, default='./Results'): Address of the output directory
+- -on, --output_network, (string, default = 'Final_phenotype_relevant_TRN.csv'): Name of the final result file.
 
 
 
 
 
-### Sample inputs and outputs:
+
+
+
+## Sample inputs and outputs:
 To test whether ProGENI runs as expected on your machine, you can use the sample inputs in the folder "sample_data" and run ProGENI with num_RCG=2 and other arguments set with default values. The results should match the file "results_sample.csv".
 ```
 python3 ProGENI.py gene_expr_sample.csv response_sample.csv network_sample.csv -nr 2
