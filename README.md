@@ -6,7 +6,7 @@
 
 # Motivation
 Reconstruction of transcriptional regulatory networks (TRNs) is a powerful approach to unravel the gene expression programs involved in healthy and disease states of a cell. However, these networks are usually reconstructed independent of the phenotypic properties of the samples and therefore cannot identify regulatory mechanisms that are related to a phenotypic outcome of interest. InPheRNo (Inference of Phenotype-relevant Regulatory Networks) is a computational tool to reconstruct phenotype-relevant transcriptional regulatory networks (TRNs) using transcriptomic data.
-Here we present InPheRNo, a novel computational tool to reconstruct ‘phenotype-relevant’ transcriptional regulatory networks. This method is based on a probabilistic graphical model whose conditional probability distributions model the simultaneous effects of multiple transcription factors (TFs) on their target genes as well as the statistical relationship between target gene expression and phenotype. 
+Here we present InPheRNo, a novel computational tool to reconstruct ‘phenotype-relevant’ transcriptional regulatory networks. This method is based on a probabilistic graphical model (PGM) whose conditional probability distributions model the simultaneous effects of multiple transcription factors (TFs) on their target genes as well as the statistical relationship between target gene expression and phenotype. 
 
 
 The figure below depcits the method overview. 
@@ -93,8 +93,10 @@ In addition to the arguments above, one can use the following optional arguments
 
 ## STEP 2:
 ### Description of the required inputs:
-This step requires three input files. Two of these input files are the intermediate outputs generated in STEP1. 
-#### Input2.1: A file containing the list of transcription factors (TFs):
+This step requires three input files. Two of these input files are the intermediate outputs generated in STEP1.
+
+#### Input2.1: A file containing p-values of gene-phenotype associations for all the genes:
+This is a (gene x phenotype) csv file (see "Data/Pvalue_gene_phenotype_all.csv" as an example) and is very similar to Input 1.2. The main difference is that this file needs to contain the gene-phenotype association p-values for all the genes and not just the genes of interest. This file is used to estimate the parameters of the PGM. The rows correspond to target genes of interest (this may be only a subset of all genes, or it may be all the genes). The p-value for TF-phenotype should not be included in this file. The value assigned to each gene represents the p-value of association between the expression of that gene and the variation in the phenotype across different samples obtained using a proper statistical test (e.g. a ttest for binary phenotype or Pearson's correlation for continuous, etc.). The genes should be sorted in an ascending order based on the p-value (smallest p-values appear first). The file is assumed to have a header. 
 
 
 
