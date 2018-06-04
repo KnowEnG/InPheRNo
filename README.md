@@ -61,11 +61,11 @@ Example:
 ### Description of outputs:
 The first step of InPheRNo generates two output files that by default will be located in a directory called "Results" placed in the current directory. These intermediate outupts will be used in the next step of InPheRNo. 
 
-#### Output1: Pvalue_gene_phenotype_interest_tmp.csv
-If default parameters are used to run the first step, Output1 will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input1.2, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
+#### Output1.1: Pvalue_gene_phenotype_interest_tmp.csv
+If default parameters are used to run the first step, Output1.1 will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input1.2, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
 
-#### Output2: Pvalue_gene_tf_tmp.csv
-If default parameters are used to run the first step, Output2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF)  csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1 file. The file has a header. See folder "Results" for a sample.
+#### Output1.2: Pvalue_gene_tf_tmp.csv
+If default parameters are used to run the first step, Output1.2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF)  csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1.1 file. The file has a header. See folder "Results" for a sample.
 
 ### Running ProGENI_step1.py: 
 #### With default settings
@@ -87,8 +87,8 @@ In addition to the arguments above, one can use the following optional arguments
 - -od, --output_directory (string, default='./Results'): Address of the output directory
 - -mt, --max_num_tf (integer, default = 15): Maximum number of TFs recovered for each gene using Elastic Net
 - -lr, --l1_ratio, (float, default = 0.5): l1 ratio of the Elastic Net model
-- -ogp, --output_gene_phenotype (string, default = 'Pvalue_gene_phenotype_interest_tmp.csv'): Name of Output1 file
-- -tgt, --output_gene_tf (string, default = 'Pvalue_gene_tf_tmp.csv'): Name of Output2 file
+- -ogp, --output_gene_phenotype (string, default = 'Pvalue_gene_phenotype_interest_tmp.csv'): Name of Output1.1 file
+- -tgt, --output_gene_tf (string, default = 'Pvalue_gene_tf_tmp.csv'): Name of Output1.2 file
 
 
 ## STEP 2:
