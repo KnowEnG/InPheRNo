@@ -106,6 +106,42 @@ This is the Output1.2 file generated in STEP1. If default parameters are used to
 
 
 
+???
+
+### Description of outputs:
+The first step of InPheRNo generates two output files that by default will be located in a directory called "Results" placed in the current directory. These intermediate outupts will be used in the next step of InPheRNo. 
+
+#### Output1.1: Pvalue_gene_phenotype_interest_tmp.csv
+If default parameters are used to run the first step, Output1.1 will be a file called "Pvalue_gene_phenotype_interest_tmp.csv" which is generated from Input1.2, properly sorted and cleaned up (if necessary). See folder "Results" for a sample.
+
+#### Output1.2: Pvalue_gene_tf_tmp.csv
+If default parameters are used to run the first step, Output1.2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF)  csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1.1 file. The file has a header. See folder "Results" for a sample.
+
+### Running InPheRNo_step1.py: 
+#### With default settings
+To Run this step with default parameters, place all the three input files above in one folder. Then specify the following four arguments:
+- input_directory: address of the data directory containing the three input files (e.g. "./Data")
+- input_tf: name of Input1.1 file containing the name of regulators (e.g. "TF_Ensemble.csv")
+- input_gene_phenotype_interest: name of Input1.2 containing p-value of gene-phenotype (e.g. "Pvalue_gene_phenotype_interest.csv")
+- input_expression: name of Input1.3 containing the expression of genes and TFs (e.g. "expr_sample.csv")
+
+The following line shows how to run InPheRNo using the sample files:
+```
+python3 InPheRNo_step1.py --input_directory ./Data --input_tf TF_Ensemble.csv --input_gene_phenotype_interest Pvalue_gene_phenotype_interest.csv --input_expression expr_sample.csv
+```
+
+By default, InPheRNo writes the intermediate outputs generated in this step into a directory called "Results" in the current directory. To change the location of the intermediate results, see advanced settings. 
+
+#### With advanced settings
+In addition to the arguments above, one can use the following optional arguments to change the default settings.
+- -od, --output_directory (string, default='./Results'): Address of the output directory
+- -mt, --max_num_tf (integer, default = 15): Maximum number of TFs recovered for each gene using Elastic Net
+- -lr, --l1_ratio, (float, default = 0.5): l1 ratio of the Elastic Net model
+- -ogp, --output_gene_phenotype (string, default = 'Pvalue_gene_phenotype_interest_tmp.csv'): Name of Output1.1 file
+- -tgt, --output_gene_tf (string, default = 'Pvalue_gene_tf_tmp.csv'): Name of Output1.2 file
+
+???
+
 
 
 
