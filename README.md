@@ -31,7 +31,7 @@ Running InPheRNo involves running three manuscripts (InPheRNo_step1.py, InPheRNo
 
 ## STEP 1:
 ### Description of required inputs:
-#### Input_1.1: A file containing the list of transcription factors (TFs):
+#### Input1.1: A file containing the list of transcription factors (TFs):
 This is a csv file in which rows contain the names of the regulators (e.g. TFs). The file should not have a header. As an example see the file "Data/TF_Ensemble.csv". 
 
 #### Input1.2: A file containing p-values of gene-phenotype associations only for genes of interest:
@@ -67,7 +67,7 @@ If default parameters are used to run the first step, Output1.1 will be a file c
 #### Output1.2: Pvalue_gene_tf_tmp.csv
 If default parameters are used to run the first step, Output1.2 will be a file called "Pvalue_gene_tf_tmp.csv". This is a (gene x TF)  csv file containing p-values of gene-tf association, sorted in an ascending order based on Output1.1 file. The file has a header. See folder "Results" for a sample.
 
-### Running ProGENI_step1.py: 
+### Running InPheRNo_step1.py: 
 #### With default settings
 To Run this step with default parameters, place all the three input files above in one folder. Then specify the following four arguments:
 - input_directory: address of the data directory containing the three input files (e.g. "./Data")
@@ -116,6 +116,6 @@ To test whether ProGENI runs as expected on your machine, you can use the sample
 ```
 python3 ProGENI.py gene_expr_sample.csv response_sample.csv network_sample.csv -nr 2
 ```
-# Running ProGENI_simplified
+# Running InPheRNo_simplified
 ProGENI_simplified.py provides a simplified implementation of ProGENI. In this variation, the Pearson correlation coefficient of network transformed gene expressions and phenotype is used to rank the genes. In other words, the steps involving identification of a RCG set and ranking genes in the network with respect to the RCG are removed. This method is called "ProGENI-PCC" in the manuscript. 
 Usage of this variation is very similar to ProGENI.py, except that -nr and -pr do not need to be provided. 
