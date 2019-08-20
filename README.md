@@ -1,7 +1,7 @@
 # *InPheRNo* - Inference of Phenotype-relevant Regulatory Networks
-#### Amin Emad (email: emad2 (at) illinois (dot) edu)
-#### KnowEnG BD2K Center of Excellence
-#### University of Illinois Urbana-Champaign
+#### Amin Emad (email: amin.emad (at) mcgill (dot) ca)
+#### Department of Electrical and Computer Engineering, McGill University
+#### KnowEnG BD2K Center of Excellence, University of Illinois Urbana-Champaign
 
 
 # Motivation
@@ -47,7 +47,7 @@ Example:
 | gene3 | 3E-10 |
 
 #### Input1.3: A file containing gene and TF expression data:
-This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input1.2 and TFs provided in Input1.1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input.  
+This is a (gene x samples) csv file containing the normalized gene (and TF) expression profiles across different samples. This file must contain expression of target genes provided in Input1.2 and TFs provided in Input1.1. The file has a header representing sample names. See "Data/expr_sample.csv" as a sample input. For best results, normalize the matrix such that the gene expresison values of each gene (approximately) follows a standard Normal distribution (mean=0, var=1), across all samples. 
 
 Example:
 
