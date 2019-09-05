@@ -192,7 +192,10 @@ for jj in range(int(args.start_index), int(end_index)):
     print('\n', 'repeat', args.index_repeat, 'gene', jj)
     selected_ind = pvalue_TF_gene.iloc[:, jj].values > -0.5
     n_selected_TF = len(pvalue_TF_gene.iloc[selected_ind, jj][:, None])
-    model = Model_twostage_fit_v2(n_selected_TF, 1, np.asarray([pvalue_gene_pheno.iloc[0][jj]]), pvalue_TF_gene.iloc[selected_ind, jj][:, None], Num_iter, Num_burn, Num_thin, Prior_T, Prior_T_method, R_TF_gene, A_TF_gene_h1, A_TF_gene_h0, A_gene)
+    if max(pvalue_TF_gene.iloc[selected_ind, jj][:, None]) == 1:    #when the largest p-value is exactly 1, it faces distribution issues. We multiply it with a number very close to 1. 
+        model = Model_twostage_fit_v2(n_selected_TF, 1, np.asarray([pvalue_gene_pheno.iloc[0][jj]]), pvalue_TF_gene.iloc[selected_ind, jj][:, None]*(1-1e-15), Num_iter, Num_burn, Num_thin, Prior_T, Prior_T_method, R_TF_gene, A_TF_gene_h1, A_TF_gene_h0, A_gene)        
+    else:    
+        model = Model_twostage_fit_v2(n_selected_TF, 1, np.asarray([pvalue_gene_pheno.iloc[0][jj]]), pvalue_TF_gene.iloc[selected_ind, jj][:, None], Num_iter, Num_burn, Num_thin, Prior_T, Prior_T_method, R_TF_gene, A_TF_gene_h1, A_TF_gene_h0, A_gene)
     T_recovered_tmp = np.zeros((n_selected_TF))
     num_samp = len(model.trace('T_0_0')[:])
     for i in range(n_selected_TF):

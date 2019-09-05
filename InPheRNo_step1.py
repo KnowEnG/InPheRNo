@@ -134,23 +134,26 @@ for i in range(len(only_gene_list)):
     #print(num_coefs)
     #print(num_coefs[num_coefs <= max_num_coefs][-1])
     rep_EN = 0
-    #    while (num_coefs[0] != num_coefs[-1]) and (num_coefs[num_coefs <= max_num_coefs][-1] != max_num_coefs) and (rep_EN < 10):
-    while (num_coefs[0] != num_coefs[-1]) and (max(num_coefs[num_coefs <= max_num_coefs]) != max_num_coefs) and (rep_EN < 10):
-        rep_EN += 1
-        alpha_min = alphas1[(num_coefs <= max_num_coefs)][-1]
-        alpha_max = alphas1[(num_coefs > max_num_coefs)][0]
-        alphas3 = np.linspace(alpha_min, alpha_max, 10)
-        alphas1, coefs1, _ = EN_model.path(X_features, y, alphas=alphas3)
-        num_coefs = np.sum(coefs1 != 0, axis=0)
-        #print(num_coefs)
-        #print(num_coefs[num_coefs <= max_num_coefs][-1])        
-    print('repeat', rep_EN )
-    if num_coefs[0] == num_coefs[-1]:
-        EN_coef = coefs1[:, 0]
+    if num_coefs[-1] < max_num_coefs:
+        EN_coef = coefs1[:, -1]
         selected_ind = np.array(range(len(only_TF_list)))[EN_coef!=0]   
-    else:
-        EN_coef = coefs1[:, len(num_coefs[num_coefs <= max_num_coefs])-1]
-        selected_ind = np.array(range(len(only_TF_list)))[EN_coef!=0]
+    else:        
+        while (num_coefs[0] != num_coefs[-1]) and (max(num_coefs[num_coefs <= max_num_coefs]) != max_num_coefs) and (rep_EN < 10):
+            rep_EN += 1
+            alpha_min = alphas1[(num_coefs <= max_num_coefs)][-1]
+            alpha_max = alphas1[(num_coefs > max_num_coefs)][0]
+            alphas3 = np.linspace(alpha_min, alpha_max, 10)
+            alphas1, coefs1, _ = EN_model.path(X_features, y, alphas=alphas3)
+            num_coefs = np.sum(coefs1 != 0, axis=0)
+            #print(num_coefs)
+            #print(num_coefs[num_coefs <= max_num_coefs][-1])        
+        print('repeat', rep_EN )
+        if num_coefs[0] == num_coefs[-1]:
+            EN_coef = coefs1[:, 0]
+            selected_ind = np.array(range(len(only_TF_list)))[EN_coef!=0]   
+        else:
+            EN_coef = coefs1[:, len(num_coefs[num_coefs <= max_num_coefs])-1]
+            selected_ind = np.array(range(len(only_TF_list)))[EN_coef!=0]
         
     print(len(selected_ind))
     n_selected_TF = len(selected_ind)
