@@ -52,7 +52,7 @@ posterior0 = pd.read_csv(address_in0, index_col=0, header=0)
 all_posterior = np.zeros((num_repeat, np.shape(posterior0)[0], np.shape(posterior0)[1])) # a numpy array where axis 0 shows repeats
 
 
-for i in range(10): #range(num_repeat):
+for i in range(num_repeat):
     if args.input_file == "None":
         address_inputfile = os.path.join(args.input_dir, 'InPheRNo_tmp_out_repeat%s.csv' %i)        
     else:
